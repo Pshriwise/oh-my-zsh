@@ -134,7 +134,7 @@ prompt_git() {
   
   local color ref
   is_dirty() {
-    test -n "$(git status --porcelain --ignore-submodules)"
+    test -n "$(git status --porcelain)"
   }
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
@@ -171,7 +171,7 @@ prompt_git() {
               else
                   mode=" ${p}⬆︎ "
               fi
-          elif [ $behind -gt 0 ] && [ $ahead -eq 0 ]; then
+          elif [[ $behind -gt 0 ]] && [[ $ahead -eq 0 ]]; then
               p=$((behind))
               if [ ! $TMUX ]; then
                   mode="⬇︎ ${p}"
