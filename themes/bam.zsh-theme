@@ -66,7 +66,7 @@ prompt_context() {
                 prompt_segment black default "["
                 prompt_segment black yellow "$USER@$COMP"
                 prompt_segment black default "]"
-                export PROMP_COLOR='092'
+                export PROMP_COLOR='magenta'
             else
                 prompt_segment black default "["
                 prompt_segment black yellow "$USER"
@@ -78,7 +78,7 @@ prompt_context() {
                 prompt_segment black default "["
                 prompt_segment black yellow "$COMP"
                 prompt_segment black default "]"
-                export PROMP_COLOR='092'
+                export PROMP_COLOR='magenta'
             else
                 export PROMP_COLOR='blue'
             fi
