@@ -136,6 +136,11 @@ prompt_git() {
   is_dirty() {
     test -n "$(git status --porcelain --ignore-submodules)"
   }
+
+  has_staged() {
+      test -n "$(git diff --staged)"
+  }
+  
   repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
@@ -143,8 +148,10 @@ prompt_git() {
       #   tmp=`git fetch --all`
       dirty=$(parse_git_dirty)
       ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
-      if is_dirty; then
-          prompt_segment yellow black
+      if has_staged; then
+	  prompt_segment yellow black
+      elif is_dirty; then
+          prompt_segment red black
       else
           prompt_segment green black
       fi
